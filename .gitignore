@@ -50,7 +50,7 @@ out/
 
 .node_modules/
 
-node_modules/
+/back_end/node_modules/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
