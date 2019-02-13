@@ -10,7 +10,7 @@ class Header extends Component {
             <Navbar  color="light" light expand="md">
                 <div  className="navHeader">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <h2>Fintech</h2>
+                    <h3 className="fintech" >Fintech</h3>
                 </div>
             </Navbar>
         </div>

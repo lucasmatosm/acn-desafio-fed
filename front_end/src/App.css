@@ -24,6 +24,70 @@
   color: #61dafb;
 }
 
+.plusIcon {
+  height: 40px;
+  float: right;
+  border-radius: 50%;
+  box-shadow: 0px 5px 11px -1px rgba(0,0,0,0.75);
+}
+.sub-title{
+  color: #2095f3;
+  padding: 15px 17px 8px 17px
+}
+.create-buttons{
+  width: fit-content;
+  margin: 18px auto;
+  float: right;
+}
+.save-button{
+  min-width: 80px;
+}
+.searchClient {
+  border: none !important;
+  outline: none !important;
+  border-radius: 0px !important;
+  margin-top: 20px;
+  background-color: #2095f3 !important;
+  color: white !important;
+  box-shadow: 0px 10px 11px -3px rgba(0, 0, 0, 0.37);
+}
+
+.searchClient:focus {
+  box-shadow: 0px 10px 11px -3px rgba(0, 0, 0, 0.37);
+}
+
+.searchClient::placeholder { color: white !important; }
+
+.test::before {
+  content: url('./public/img/search.svg');
+  position: absolute;
+  background-color: #2095f3;
+  width: 20px;
+  height: 20px;
+}
+
+.list {
+  display: flex;
+  margin-top: 15px;
+}
+
+.userCpf {
+  font-size: 12px;
+  display: flex;
+  padding-left: 5px;
+  color: gray;
+}
+.labelForm{
+  margin-bottom: 0!important;
+}
+.fintech{
+  margin-top: 22px;
+}
+
+.addInput {
+  margin-top: 10px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

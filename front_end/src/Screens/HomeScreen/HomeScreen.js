@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import Header from '../../Components/Header/HeaderComponent.js'
+import { Container } from 'reactstrap';
+import UserList from '../../Components/User/UserList/UserList';
 
-class HomeScreen extends Component {
+
+export default class HomeScreen extends Component {
   render() {
     return (
-        <Header></Header>
+      <Container>
+        <UserList></UserList>
+      </Container>
     );
   }
 }
-
-export default HomeScreen;

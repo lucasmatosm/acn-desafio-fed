@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const TodoSchema = new mongoose.Schema({
+const ClientSchema = new mongoose.Schema({
     fullName: { type: String, required: true},
     cpf: { type: Number, required: true},
     phone: { type: Number, required: true},
@@ -10,4 +10,4 @@ const TodoSchema = new mongoose.Schema({
     age: { type: Number, required: true}
 });
 
-module.exports = mongoose.model('todo', TodoSchema);
+module.exports = mongoose.model('client', ClientSchema);
