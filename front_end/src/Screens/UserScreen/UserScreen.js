@@ -7,7 +7,7 @@ export default class UserScreen extends Component {
   render() {
     return (
         <Container>
-          <UserAdd></UserAdd>
+          <UserAdd props={this.props}></UserAdd>
         </Container>
     );
   }

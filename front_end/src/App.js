@@ -17,7 +17,8 @@ class App extends Component {
         <Header></Header>
         <SubHeader {...props}></SubHeader>
         <Route exact path="/" component={Home}></Route>
-        <Route exact path="/adduser" component={UserScreen}></Route>
+        <Route exact path="/adduser/" component={UserScreen}></Route>
+        <Route path="/adduser/:id" component={UserScreen}></Route>
         </div>}
         </Route>
         </Switch>

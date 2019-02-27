@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InputGroup, Input, Container, Button, Label} from 'reactstrap';
+import { InputGroup, Input, Container, Button, Label } from 'reactstrap';
 
 
 
@@ -7,7 +7,13 @@ export default class UserAdd extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userData: {}
+            userData: {
+                age: '',
+                cpf: '',
+                email: '',
+                fullName: '',
+                phone: ''
+            }
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -18,12 +24,14 @@ export default class UserAdd extends Component {
     }
 
     componentWillMount() {
-
+        console.log(this.props.props.match.params.id)
+        if (this.props.props.match.params.id) {
+            this.getUser(this.props.props.match.params.id)
+        }
     }
 
     changePage() {
-        console.log(this.props)
-        //this.props.history.pop()
+        this.props.props.history.push('/')
     }
 
     handleChange({ target: { name, value } }) {
@@ -33,35 +41,43 @@ export default class UserAdd extends Component {
     }
 
     registerUser() {
+        if (this.props.props.match.params.id) {
+            this.updateUser(this.props.props.match.params.id)
+        } else {
+            let { userData } = this.state
+            fetch('http://localhost:4000/api/client', {
+                method: 'POST',
+                body: JSON.stringify(userData),
+                headers: { 'Content-Type': 'application/json' }
+            }).then((response) => {
+                this.props.props.history.push('/')
+            })
+        }
+
+    }
+
+    getUser(id) {
+        fetch(`http://localhost:4000/api/client/${id}`)
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ userData: data })
+            })
+    }
+
+    updateUser(id) {
         let { userData } = this.state
-        fetch('http://localhost:4000/api/client', {
-            method: 'POST',
+        fetch(`http://localhost:4000/api/client/${id}`, {
+            method: 'PUT',
             body: JSON.stringify(userData),
             headers: { 'Content-Type': 'application/json' }
+        }).then((response) => {
+            this.props.props.history.push('/')
         })
-
-    }
-
-    getUser() {
-        // fetch(`http://localhost:4000/api/client/${id}`)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         this.setState({ userData: data })
-        //     })
-    }
-
-    updateUser () {
-        // let { userData } = this.state
-        // fetch(`http://localhost:4000/api/client/${id}`, {
-        //     method: 'PUT',
-        //     body: JSON.stringify(userData),
-        //     headers: { 'Content-Type': 'application/json' }
-        // })
     }
 
 
     render() {
-        const { userData : {fullName, cpf, email, phone, age} } = this.state
+        const { userData: { fullName, cpf, email, phone, age } } = this.state
         return (
             <Container>
                 <InputGroup>
@@ -77,7 +93,7 @@ export default class UserAdd extends Component {
                         </div>
                         <div className="col-6">
                             <Label className="labelForm" for="CPF">CPF</Label>
-                            <Input className="addInput" value={cpf}  id="cpf" name="cpf" onChange={this.handleChange} />
+                            <Input className="addInput" value={cpf} id="cpf" name="cpf" onChange={this.handleChange} />
 
                         </div>
                         <div className="col-12">

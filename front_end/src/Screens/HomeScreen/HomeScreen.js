@@ -7,7 +7,7 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <Container>
-        <UserList></UserList>
+        <UserList props={this.props}></UserList>
       </Container>
     );
   }
