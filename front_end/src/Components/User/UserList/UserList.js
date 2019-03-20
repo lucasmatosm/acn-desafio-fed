@@ -42,15 +42,15 @@ export default class UserList extends Component {
     render() {
         return (
             <div className="row list">
-                {this.state.users.map((key) =>
-                    <React.Fragment>
-                        <div className="col-8">
-                            {key.fullName}
-                            <span className="userCpf">{key.cpf}</span>
+                {this.state.users.map((user) =>
+                    <React.Fragment key={user._id}>
+                        <div className="col-8" >
+                            {user.fullName}
+                            <span className="userCpf">{user.cpf}</span>
                         </div>
                         <div className="col-2">
-                            <img onClick={() => this.infoUser(key._id)} src={infoIcon} alt="infoUser"></img></div>
-                        <div className="col-2"><img onClick={() => this.deletUser(key._id)} src={garbageIcon} alt="deletUser"></img></div>
+                            <img onClick={() => this.infoUser(user._id)} src={infoIcon} alt="infoUser"></img></div>
+                        <div className="col-2"><img onClick={() => this.deletUser(user._id)} src={garbageIcon} alt="deletUser"></img></div>
                     </React.Fragment>
                 )}
             </div>

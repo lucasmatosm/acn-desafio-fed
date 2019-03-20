@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { InputGroup, Input, Container, Button, Label } from 'reactstrap';
+import { connect } from 'react-redux';
 
 
 
-export default class UserAdd extends Component {
+ class UserAdd extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,7 +25,6 @@ export default class UserAdd extends Component {
     }
 
     componentWillMount() {
-        console.log(this.props.props.match.params.id)
         if (this.props.props.match.params.id) {
             this.getUser(this.props.props.match.params.id)
         }
@@ -78,32 +78,34 @@ export default class UserAdd extends Component {
 
     render() {
         const { userData: { fullName, cpf, email, phone, age } } = this.state
+        const {props: {match: {params: {id}} }}  = this.props;
+        const {newValue} = this.props;
         return (
             <Container>
                 <InputGroup>
                     <div className="row">
                         <div className="col-12">
                             <Label className="labelForm" for="fullName">Nome Completo</Label>
-                            <Input className="addInput" value={fullName} id="fullName" name="fullName" onChange={this.handleChange} />
+                            <Input className="addInput" disabled={newValue === 'f' && id} value={fullName} id="fullName" name="fullName" onChange={this.handleChange} />
                         </div>
                         <div className="col-6">
                             <Label className="labelForm" for="age">Idade</Label>
-                            <Input className="addInput" value={age} id="age" name="age" onChange={this.handleChange} />
+                            <Input className="addInput" disabled={newValue === 'f' && id} value={age} id="age" name="age" onChange={this.handleChange} />
 
                         </div>
                         <div className="col-6">
                             <Label className="labelForm" for="CPF">CPF</Label>
-                            <Input className="addInput" value={cpf} id="cpf" name="cpf" onChange={this.handleChange} />
+                            <Input className="addInput" disabled={newValue === 'f' && id} value={cpf} id="cpf" name="cpf" onChange={this.handleChange} />
 
                         </div>
                         <div className="col-12">
                             <Label className="labelForm" for="phone">Telefone</Label>
-                            <Input className="addInput" value={phone} id="phone" name="phone" onChange={this.handleChange} />
+                            <Input className="addInput" disabled={newValue === 'f' && id} value={phone} id="phone" name="phone" onChange={this.handleChange} />
                         </div>
 
                         <div className="col-12">
                             <Label className="labelForm" for="email">Email</Label>
-                            <Input className="addInput" value={email} id="email" type="email" name="email" onChange={this.handleChange} />
+                            <Input className="addInput" disabled={newValue === 'f' && id} value={email} id="email" type="email" name="email" onChange={this.handleChange} />
 
                         </div>
 
@@ -118,3 +120,9 @@ export default class UserAdd extends Component {
         );
     }
 }
+
+const mapStateToProps = store => ({
+    newValue: store.switchState.newValue
+});
+
+export default connect(mapStateToProps)(UserAdd);
