@@ -1,77 +1,65 @@
 import React, { Component } from 'react';
-import { InputGroup, Input, InputGroupAddon, CustomInput } from 'reactstrap';
+import { InputGroup, Input, InputGroupAddon, CustomInput, Container } from 'reactstrap';
 import AddIcon from '../../public/img/plus.svg'
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { switchButton } from '../../actions';
+import { switchButton } from '../../actions/actionSwitch';
 
-
- class SubHeader extends Component {
+class SubHeader extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			listTitle: "Lista de usuários",
+			listTitleRegister: 'Cadastro de Usuário',
+			listTitleList: 'Lista de Usuários',
 			inputValue: 't'
 		}
 
 		this.changePage = this.changePage.bind(this);
 	}
 
-	componentWillMount() {
-		if(this.props.location.pathname.includes('/addUser')){
-			this.setState({ listTitle: 'Cadastro de Usuário' })
-		}
+	inputChange = event => {
+
+		this.setState({
+			inputValue: this.state.inputValue === 't' ? 'f' : 't'
+		})
 	}
-
-	 inputChange = event => {
-
-		 this.setState({
-			 inputValue: this.state.inputValue === 't' ? 'f': 't'
-		 })
-	 }
 
 	changePage() {
 		this.props.history.push('/addUser')
-		this.setState({ listTitle: 'Cadastro de Usuário' })
+		this.setState({ listTitleState: 'Cadastro de Usuário' })
 	}
 
 	render() {
-		const {switchButton} = this.props;
-		const { inputValue } = this.state;
+		const { switchButton } = this.props;
+		const { inputValue, listTitleRegister, listTitleList } = this.state;
+
 		return (
-			<div>
+			<Container>
 
-				<h5 className="sub-title">{this.state.listTitle}</h5>
-
+				{!this.props.location.pathname.includes('/addUser') ? <h5 className="sub-title">{listTitleList}</h5> :
+					<h5 className="sub-title">{listTitleRegister}</h5>}
 				<div>
-				{!this.props.location.pathname.includes('/addUser') ? null :
-			<CustomInput type="switch" id="exampleCustomSwitch" name="customSwitch"
-						 onChange={this.inputChange} onClick={() => switchButton(inputValue)} value={inputValue} label="Editar" className="editClient" />}
-				
+					{!this.props.location.pathname.includes('/addUser/') ? null :
+						<CustomInput type="switch" id="exampleCustomSwitch" name="customSwitch"
+							onChange={this.inputChange} onClick={() => switchButton(inputValue)} value={inputValue} label="Editar" className="editClient" />}
+
 					{this.props.location.pathname.includes('/addUser') ? null :
 						<img onClick={this.changePage} src={AddIcon} className="plusIcon" alt="addIcon"></img>}
 
-					{this.props.location.pathname.includes('/addUser') ? null :
-						<InputGroup>
-							<Input className="searchClient" placeholder="Busca por nome e CPF" />
-							<InputGroupAddon addonType="append">
-								{/* <Button color="secondary">To the Right!</Button> */}
-							</InputGroupAddon>
-						</InputGroup>}
 				</div>
 				{/* <span className="test"></span> */}
 
-			</div>
+			</Container>
 		);
 	}
 }
 
-const mapStateToProps = store => ({
-	newValue: store.switchState.newValue
-});
 
 const mapDispatchToProps = dispatch =>
 	bindActionCreators({ switchButton }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubHeader);
+
+
+
+export default connect(mapDispatchToProps)(SubHeader);
