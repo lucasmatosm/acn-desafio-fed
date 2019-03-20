@@ -23,6 +23,10 @@
   float: right;
     padding-right: 30px;
 }
+.actionImg{
+  max-width: 22px;
+  max-height: 22px;
+}
 
 .App-link {
   color: #61dafb;
