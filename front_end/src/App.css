@@ -8,6 +8,9 @@
 .navHeader{
   display: flex;
 }
+.paginator {
+  margin-left: 35%;
+}
 
 .App-header {
   background-color: #282c34;

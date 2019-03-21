@@ -1,22 +1,37 @@
 import React, { Component } from 'react';
 import garbageIcon from '../../../public/img/garbage.svg'
 import infoIcon from '../../../public/img/information.svg'
-import { InputGroup, Input, InputGroupAddon, CustomInput, Container } from 'reactstrap';
+import { InputGroup, Input, InputGroupAddon } from 'reactstrap';
+import Pagination from '../../Pagination/Pagination'
 
 export default class UserList extends Component {
     constructor(props) {
         super(props);
         this.userTempList = []
+        this.originalList =[]
         this.state = {
             users: []
         }
 
         this.getList = this.getList.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleInputFunction = this.handleInputFunction.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getList();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps)
+    }
+
+    handleInputFunction(e) {
+        const { users } = this.state;
+        if(e !== users){
+            this.setState({ users: e });
+            this.userTempList = e;
+        }
     }
 
 
@@ -26,7 +41,6 @@ export default class UserList extends Component {
             .then(data => {
                 this.setState({ users: data });
                 this.userTempList = this.state.users;
-
             }
 
             );
@@ -38,7 +52,6 @@ export default class UserList extends Component {
             headers: { 'Content-Type': 'application/json' }
         }).then((response) => {
             this.state.users.splice(this.state.users.indexOf(this.state.users.filter(key => key._id === id)[0]), 1)
-
             this.setState({ users: this.state.users })
         })
     }
@@ -91,6 +104,8 @@ export default class UserList extends Component {
                     )}
                 </div>
 
+
+                <Pagination userList={this.state.users} ourInputFunction={this.handleInputFunction} ></Pagination>
             </div>
 
         );
