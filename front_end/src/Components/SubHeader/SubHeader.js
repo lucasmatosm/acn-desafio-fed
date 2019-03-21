@@ -59,7 +59,9 @@ class SubHeader extends Component {
 const mapDispatchToProps = dispatch =>
 	bindActionCreators({ switchButton }, dispatch);
 
+	const mapStateToProps = store => ({
+		newValue: store.switchState.newValue
+	});
 
 
-
-export default connect(mapDispatchToProps)(SubHeader);
+export default connect(mapStateToProps,mapDispatchToProps)(SubHeader);
