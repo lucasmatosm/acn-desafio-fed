@@ -11,7 +11,41 @@
 .paginator {
   margin-left: 35%;
 }
+.alertImg{
+  max-width: 100px;
+  max-height: 100px;
+  width: fit-content;
+  margin-left: 15%;
+}
 
+.searchClient {
+  border: none !important;
+  outline: none !important;
+  border-radius: 0px !important;
+  margin-top: 20px;
+  background-color: #2095f3 !important;
+  color: white !important;
+  box-shadow: 0px 10px 11px -3px rgba(0, 0, 0, 0.37);
+}
+
+.searchClient:focus {
+  box-shadow: 0px 10px 11px -3px rgba(0, 0, 0, 0.37);
+}
+
+.searchClient::placeholder { color: white !important; }
+
+.list {
+  display: flex;
+  margin-top: 15px;
+}
+
+.actionImg{
+  max-width: 22px;
+  max-height: 22px;
+}
+.msgError{
+    margin: 0 auto;
+}
 
 .App-header {
   background-color: #282c34;
