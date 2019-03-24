@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://ec2-18-231-184-124.sa-east-1.compute.amazonaws.com:3000');
+    res.setHeader('Access-Control-Allow-Origin', 'http://18.228.227.88:3000');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

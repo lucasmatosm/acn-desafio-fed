@@ -45,7 +45,7 @@ import { connect } from 'react-redux';
             this.updateUser(this.props.props.match.params.id)
         } else {
             let { userData } = this.state
-            fetch('http://ec2-18-231-184-124.sa-east-1.compute.amazonaws.com:4000/api/client', {
+            fetch('http://18.228.227.88:4000/api/client', {
                 method: 'POST',
                 body: JSON.stringify(userData),
                 headers: { 'Content-Type': 'application/json' }
@@ -57,7 +57,7 @@ import { connect } from 'react-redux';
     }
 
     getUser(id) {
-        fetch(`http://ec2-18-231-184-124.sa-east-1.compute.amazonaws.com:4000/api/client/${id}`)
+        fetch(`http://18.228.227.88:4000/api/client/${id}`)
             .then(response => response.json())
             .then(data => {
                 this.setState({ userData: data })
@@ -66,7 +66,7 @@ import { connect } from 'react-redux';
 
     updateUser(id) {
         let { userData } = this.state
-        fetch(`http://ec2-18-231-184-124.sa-east-1.compute.amazonaws.com:4000/api/client/${id}`, {
+        fetch(`http://18.228.227.88:4000/api/client/${id}`, {
             method: 'PUT',
             body: JSON.stringify(userData),
             headers: { 'Content-Type': 'application/json' }

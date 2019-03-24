@@ -36,7 +36,7 @@ export default class UserList extends Component {
 
 
     getList() {
-        fetch('http://ec2-18-231-184-124.sa-east-1.compute.amazonaws.com:4000/api/client/')
+        fetch('http://18.228.227.88:4000/api/client/')
             .then(response => response.json())
             .then(data => {
                 this.setState({ users: data });
@@ -47,7 +47,7 @@ export default class UserList extends Component {
     }
 
     deletUser(id) {
-        fetch(`http://ec2-18-231-184-124.sa-east-1.compute.amazonaws.com:4000/api/client/${id}`, {
+        fetch(`http://18.228.227.88:4000/api/client/${id}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
         }).then((response) => {
