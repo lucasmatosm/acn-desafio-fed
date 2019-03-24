@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import garbageIcon from '../../../public/img/garbage.svg'
 import infoIcon from '../../../public/img/information.svg'
+import alertIcon from '../../../public/img/alert.png'
 import { InputGroup, Input, InputGroupAddon } from 'reactstrap';
 import Pagination from '../../Pagination/Pagination'
+import './UserList.css';
 
 export default class UserList extends Component {
     constructor(props) {
         super(props);
         this.userTempList = []
-        this.originalList =[]
+        this.originalList = []
         this.state = {
             users: []
         }
@@ -28,7 +30,7 @@ export default class UserList extends Component {
 
     handleInputFunction(e) {
         const { users } = this.state;
-        if(e !== users){
+        if (e !== users) {
             this.setState({ users: e });
             this.userTempList = e;
         }
@@ -103,9 +105,13 @@ export default class UserList extends Component {
                         </React.Fragment>
                     )}
                 </div>
+                {this.state.users.length !== 0 ? <Pagination userList={this.state.users} ourInputFunction={this.handleInputFunction} ></Pagination> :
+                    <div  className="col-4 msgError">
+                        <span>Nenhum usuário cadastrado</span>
+                        <img className="alertImg" src={alertIcon} alt="EmprtyUsers"></img>
+                    </div>
 
-
-                <Pagination userList={this.state.users} ourInputFunction={this.handleInputFunction} ></Pagination>
+                }
             </div>
 
         );
